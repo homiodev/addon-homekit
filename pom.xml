@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <artifactId>addon-homekit</artifactId>
+
+    <modelVersion>4.0.0</modelVersion>
+    <name>Homekit</name>
+    <packaging>jar</packaging>
+
+    <parent>
+        <artifactId>addon-parent</artifactId>
+        <groupId>org.homio.addon</groupId>
+        <version>1.2.9-SNAPSHOT</version>
+    </parent>
+
+    <version>1.0.0</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.github.hap-java</groupId>
+            <artifactId>hap</artifactId>
+            <version>2.0.7</version>
+        </dependency>
+    </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/homiodev/addon-homekit</url>
+        </repository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>github-addon-parent</id>
+            <url>https://maven.pkg.github.com/homiodev/addon-parent</url>
+        </repository>
+        <repository>
+            <id>github-homio-dependency</id>
+            <url>https://maven.pkg.github.com/homiodev/homio-dependency</url>
+        </repository>
+        <repository>
+            <id>github-homio-hquery</id>
+            <url>https://maven.pkg.github.com/homiodev/homio-hquery</url>
+        </repository>
+        <repository>
+            <id>github-homio-api</id>
+            <url>https://maven.pkg.github.com/homiodev/homio-api</url>
+        </repository>
+    </repositories>
+</project>
