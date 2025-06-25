@@ -328,7 +328,7 @@ public final class HomekitEntity extends DeviceEntityAndSeries<HomekitEndpointEn
                 var masterCharacteristic = ctx.accessory().getMasterCharacteristic();
                 if (masterCharacteristic == null) return State.empty;
                 if (masterCharacteristic instanceof EnumCharacteristic<?> ec) {
-                    return State.of(ec.getEnumValue().get() + "(" + ec.getValue().get() + ")");
+                    return State.of(capitalizeFully(String.valueOf(ec.getEnumValue().get())) + "(" + ec.getValue().get() + ")");
                 }
                 return State.of(masterCharacteristic.getValue().get());
             } catch (Exception e) {
@@ -361,8 +361,7 @@ public final class HomekitEntity extends DeviceEntityAndSeries<HomekitEndpointEn
                             var c = ch.characteristic();
                             Object value = c.getValue().get();
                             if (c instanceof EnumCharacteristic<?> ec) {
-                                String cptlWrld = WordUtils.capitalizeFully(String.valueOf(ec.getEnumValue().get()));
-                                value = StringUtils.remove(cptlWrld, "_") + "(" + ec.getValue().get() + ")";
+                                value = capitalizeFully(String.valueOf(ec.getEnumValue().get())) + "(" + ec.getValue().get() + ")";
                             }
                             items.add(new Item(ch.name(), ch.variable(), value));
                         } catch (Exception ignored) {
@@ -372,6 +371,10 @@ public final class HomekitEntity extends DeviceEntityAndSeries<HomekitEndpointEn
             items.sort(Comparator.comparingInt(i -> i.name.length()));
             return buildVariablesDescription(items).toString();
         }
+    }
+
+    private static String capitalizeFully(String str) {
+        return StringUtils.remove(WordUtils.capitalizeFully(str), "_");
     }
 
     record Item(String name, String value, String icon, String color, String unit) {
